@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EldenTome — The Ultimate Elden Ring Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">&#9878;</span> EldenTome
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" class="nav-link active" data-tab="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-tab="classes">Classes</a></li>
+                <li><a href="#" class="nav-link" data-tab="boss-order">Boss Order</a></li>
+                <li><a href="#" class="nav-link" data-tab="boss-detail">Boss Detail</a></li>
+                <li><a href="#" class="nav-link" data-tab="mechanics">Mechanics</a></li>
+                <li><a href="#" class="nav-link" data-tab="warcrafts">Warcrafts</a></li>
+                <li><a href="#" class="nav-link" data-tab="builds">Builds</a></li>
+                <li><a href="#" class="nav-link" data-tab="early-game">Early Game</a></li>
+                <li><a href="#" class="nav-link" data-tab="stats">Stats</a></li>
+                <li><a href="#" class="nav-link" data-tab="community-guides">Community</a></li>
+                <li><a href="#" class="nav-link" data-tab="feedback">Feedback</a></li>
+                <li class="nav-auth" id="navAuth"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== TAB CONTENT CONTAINER ===== -->
+    <main id="tabContent">
+
+        <!-- ==================== HOME TAB ==================== -->
+        <div class="tab-panel active" id="panel-home">
+
+            <!-- Hero -->
+            <header class="hero" id="heroSection">
+                <video class="hero-video" autoplay muted loop playsinline poster="">
+                    <source src="hero-video.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+                <div class="hero-particles" id="heroParticles"></div>
+                <div class="hero-content">
+                    <p class="hero-subtitle">The Tarnished' Essential Compendium</p>
+                    <h1 class="hero-title">Elden<span>Tome</span></h1>
+                    <p class="hero-desc">Everything you need to conquer the Lands Between — from your first death to beating Malenia.</p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-primary" onclick="switchTab('classes')">Choose Your Class</a>
+                        <a href="#" class="btn btn-outline" onclick="switchTab('boss-order')">Boss Order</a>
+                    </div>
+                </div>
+                <div class="hero-scroll-hint">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </header>
+
+            <!-- Quick Stats -->
+            <section class="stats-bar">
+                <div class="container">
+                    <div class="stat-item"><span class="stat-number">165+</span><span class="stat-label">Bosses</span></div>
+                    <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">Playable Classes</span></div>
+                    <div class="stat-item"><span class="stat-number">200+</span><span class="stat-label">Weapons</span></div>
+                    <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">Stat Types</span></div>
+                </div>
+            </section>
+
+            <!-- Navigation Cards -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header"><span class="section-tag">START HERE</span><h2>Guide Sections</h2><p>Pick a topic and dive in.</p></div>
+                    <div class="nav-cards">
+                        <a href="#" class="nav-card" onclick="switchTab('classes')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#2a4a3a,#1a2a20);">&#9760;</div>
+                            <h3>Class Selection</h3>
+                            <p>All 10 classes compared, with pick-rate percentages and recommendations.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('boss-order')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#4a2a2a,#2a1515);">&#9876;</div>
+                            <h3>Main Boss Order</h3>
+                            <p>The optimal sequence of main story bosses from start to the final ending.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('boss-detail')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#3a2a4a,#1f152a);">&#9819;</div>
+                            <h3>Boss Strategies</h3>
+                            <p>Every major boss broken down with phase-by-phase tactics and weaknesses.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('mechanics')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#2a3a5a,#15203a);">&#9878;</div>
+                            <h3>Core Mechanics</h3>
+                            <p>Torment, poise, impact, i-frames, buff stacking, and more explained.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('warcrafts')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#5a4a1a,#3a2a0a);">&#9834;</div>
+                            <h3>Ashes of War</h3>
+                            <p>Warcraft categories, affinity effects, and how to change weapon abilities.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('builds')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#4a3a1a,#2a200a);">&#9855;</div>
+                            <h3>Core Builds</h3>
+                            <p>Bleed, Mage, Strength, Dex, Faith — proven builds with stat targets.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('early-game')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#1a3a2a,#0d2a15);">&#9830;</div>
+                            <h3>Early Game Guide</h3>
+                            <p>What to do first, essential items, where to level up, and what not to miss.</p>
+                        </a>
+                        <a href="#" class="nav-card" onclick="switchTab('stats')">
+                            <div class="nav-card-icon" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a);">&#9873;</div>
+                            <h3>Stats Explained</h3>
+                            <p>Every attribute, its soft caps, and how it affects your character.</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== CLASSES TAB ==================== -->
+        <div class="tab-panel" id="panel-classes">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Class <span style="color:var(--gold)">Selection</span></h1>
+                    <p>Every starting class compared, with pick rates, pros, cons, and recommendations.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="classes-intro">
+                        <p>Your starting class determines your initial stats, equipment, and level. <strong>Classes do not lock you in</strong> — you can level any stat freely after starting. However, your class affects your early-game experience significantly. The class with the best starting equipment and balanced stats tends to be the most popular among new and veteran players alike.</p>
+                    </div>
+
+                    <div class="class-grid">
+                        <!-- Vagabond -->
+                        <div class="class-card popular">
+                            <div class="class-pop-badge">Most Popular</div>
+                            <div class="class-header">
+                                <span class="class-icon">&#9876;</span>
+                                <div>
+                                    <h3>Vagabond</h3>
+                                    <p class="class-level">Level 9 &middot; Knight Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">28%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:28%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>105</div>
+                                <div class="mini-stat"><span>STR</span>14</div>
+                                <div class="mini-stat"><span>DEX</span>13</div>
+                                <div class="mini-stat"><span>VIT</span>15</div>
+                                <div class="mini-stat"><span>END</span>12</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>High HP & Vitality<br>Great starting sword & shield<br>Best early defense</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Slow attacks<br>Low magic/faith</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best class for beginners. The shield and high vitality let you learn enemy patterns safely. Most popular class among all players.</p>
+                        </div>
+
+                        <!-- Samurai -->
+                        <div class="class-card popular">
+                            <div class="class-pop-badge">Top Tier</div>
+                            <div class="class-header">
+                                <span class="class-icon">&#9877;</span>
+                                <div>
+                                    <h3>Samurai</h3>
+                                    <p class="class-level">Level 9 &middot; Ninja Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">24%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:24%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>95</div>
+                                <div class="mini-stat"><span>STR</span>12</div>
+                                <div class="mini-stat"><span>DEX</span>15</div>
+                                <div class="mini-stat"><span>VIT</span>11</div>
+                                <div class="mini-stat"><span>ARC</span>14</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Uchigatana (bleed innate)<br>Good DEX start<br>Bow for safe farming</div>
+                                <div class="class-cons"><strong>Cons</strong><br>No shield initially<br>Lower HP/VIT</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best class for bleed builds. The Uchigatana's innate bleed is one of the strongest early-game weapons. Excellent for both PvE and PvP.</p>
+                        </div>
+
+                        <!-- Confessor -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9878;</span>
+                                <div>
+                                    <h3>Confessor</h3>
+                                    <p class="class-level">Level 10 &middot; Priest Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">10%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:10%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>90</div>
+                                <div class="mini-stat"><span>STR</span>12</div>
+                                <div class="mini-stat"><span>DEX</span>12</div>
+                                <div class="mini-stat"><span>FTH</span>14</div>
+                                <div class="mini-stat"><span>VIT</span>10</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Hidden Blade (stealth)<br>Black Flame spell<br>Balanced stats</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Lower starting HP<br>Complex stat spread</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Great for hybrid faith/DEX builds. The Blackflame Blade spell plus a curved sword makes early game easy.</p>
+                        </div>
+
+                        <!-- Astrologer -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9873;</span>
+                                <div>
+                                    <h3>Astrologer</h3>
+                                    <p class="class-level">Level 6 &middot; Mage Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">10%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:10%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>75</div>
+                                <div class="mini-stat"><span>INT</span>16</div>
+                                <div class="mini-stat"><span>FTH</span>11</div>
+                                <div class="mini-stat"><span>MEM</span>10</div>
+                                <div class="mini-stat"><span>VIT</span>9</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Highest INT start<br>Glintstone Pebble spell<br>Best magic DPS</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Very fragile<br>Low HP & Vigor</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best pure mage starter. If you want to cast Comet Azur by endgame, start here. Very squishy — learn dodge timing.</p>
+                        </div>
+
+                        <!-- Hero -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9876;</span>
+                                <div>
+                                    <h3>Hero</h3>
+                                    <p class="class-level">Level 7 &middot; Brute Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">5%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:5%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>95</div>
+                                <div class="mini-stat"><span>STR</span>16</div>
+                                <div class="mini-stat"><span>VIT</span>12</div>
+                                <div class="mini-stat"><span>END</span>11</div>
+                                <div class="mini-stat"><span>DEX</span>9</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Highest STR at start<br>Big axe for early damage<br>Good VIT</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Very low DEX<br>No shield</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best pure strength starter. Crude War-Axe is strong early but you'll need to invest heavily in DEX for later weapons.</p>
+                        </div>
+
+                        <!-- Prisoner -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9877;</span>
+                                <div>
+                                    <h3>Prisoner</h3>
+                                    <p class="class-level">Level 8 &middot; Elf Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">6%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:6%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>85</div>
+                                <div class="mini-stat"><span>DEX</span>12</div>
+                                <div class="mini-stat"><span>INT</span>12</div>
+                                <div class="mini-stat"><span>VIT</span>11</div>
+                                <div class="mini-stat"><span>END</span>11</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>DEX + INT hybrid<br>Estoc thrusts well<br>Glintstone Arc spell</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Below average stats<br>Unbalanced spread</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Good for DEX/INT hybrid builds. The glintstone arc spell is great for close-range magic.</p>
+                        </div>
+
+                        <!-- Warrior -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9877;</span>
+                                <div>
+                                    <h3>Warrior</h3>
+                                    <p class="class-level">Level 4 &middot; Duelist Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">4%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:4%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>80</div>
+                                <div class="mini-stat"><span>DEX</span>16</div>
+                                <div class="mini-stat"><span>STR</span>10</div>
+                                <div class="mini-stat"><span>VIT</span>9</div>
+                                <div class="mini-stat"><span>END</span>11</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Highest DEX at start<br>Double-blades for DPS<br>Fast combat style</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Low HP & VIT<br>Very glass cannon</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best pure dexterity starter. Highest DEX means faster early DPS but you'll die easily — not recommended for new players.</p>
+                        </div>
+
+                        <!-- Wretch -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9855;</span>
+                                <div>
+                                    <h3>Wretch</h3>
+                                    <p class="class-level">Level 1 &middot; Naked Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">5%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:5%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>60</div>
+                                <div class="mini-stat"><span>ALL</span>10</div>
+                                <div class="mini-stat"><span>Equipment</span>None</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Complete stat freedom<br>Same level 1 as everyone<br>Solidwood Stick</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Naked & weak<br>Very early game hard</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best for min-maxers who know the game. All stats start at 10 — perfect for any custom build. But you start with nothing and low HP.</p>
+                        </div>
+
+                        <!-- Awakened & Prophet -->
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9878;</span>
+                                <div>
+                                    <h3>Prophet</h3>
+                                    <p class="class-level">Level 7 &middot; Seer Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">4%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:4%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>80</div>
+                                <div class="mini-stat"><span>FTH</span>16</div>
+                                <div class="mini-stat"><span>MEM</span>10</div>
+                                <div class="mini-stat"><span>STR</span>10</div>
+                                <div class="mini-stat"><span>VIT</span>10</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Highest FTH start<br>Beast Claw incantation<br>Best faith DPS</div>
+                                <div class="class-cons"><strong>Cons</strong><br>Low VIT & HP<br>Relies on spells</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best pure faith starter. Beast Claw is an excellent early incantation. Low HP makes early game risky.</p>
+                        </div>
+
+                        <div class="class-card">
+                            <div class="class-header">
+                                <span class="class-icon">&#9878;</span>
+                                <div>
+                                    <h3>Awakened</h3>
+                                    <p class="class-level">Level 14 &middot; Holy Class</p>
+                                </div>
+                            </div>
+                            <div class="class-pickrate">
+                                <span class="pickrate-label">Player Pick Rate</span>
+                                <span class="pickrate-value">4%</span>
+                                <div class="pickrate-bar"><div class="pickrate-fill" style="width:4%"></div></div>
+                            </div>
+                            <div class="class-stats-preview">
+                                <div class="mini-stat"><span>HP</span>90</div>
+                                <div class="mini-stat"><span>FTH</span>16</div>
+                                <div class="mini-stat"><span>MEM</span>14</div>
+                                <div class="mini-stat"><span>STR</span>12</div>
+                                <div class="mini-stat"><span>VIT</span>11</div>
+                            </div>
+                            <div class="class-pros-cons">
+                                <div class="class-pros"><strong>Pros</strong><br>Highest MEM start<br>Heal + Blessing's Boon<br>Best support spells</div>
+                                <div class="class-cons"><strong>Cons</strong><br>High level 14<br>Expensive start</div>
+                            </div>
+                            <p class="class-verdict"><strong>Verdict:</strong> Best for support/incantation-focused builds. Highest Memory Stones gives most spell slots. But you start at level 14 — wasting runes.</p>
+                        </div>
+                    </div>
+
+                    <div class="class-summary">
+                        <h3>Our Recommendation</h3>
+                        <p><strong>New players:</strong> Start with <span class="highlight">Vagabond</span> — the shield and high HP let you learn the game safely.</p>
+                        <p><strong>Bleed/DPS players:</strong> Start with <span class="highlight">Samurai</span> — the Uchigatana's innate bleed melts bosses.</p>
+                        <p><strong>Mage players:</strong> Start with <span class="highlight">Astrologer</span> — highest INT and Glintstone Pebble clears early areas.</p>
+                        <p><strong>Veterans:</strong> Start with <span class="highlight">Wretch</span> — perfect stat distribution for any endgame build.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== BOSS ORDER TAB ==================== -->
+        <div class="tab-panel" id="panel-boss-order">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Main Story <span style="color:var(--gold)">Boss Order</span></h1>
+                    <p>The recommended sequence of main story bosses from the beginning to the end of the game.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="boss-order-intro">
+                        <p>This is the <strong>natural story progression</strong> of Elden Ring's main path. While the game allows some flexibility (you can skip Liurnia and go to Caelid, for example), following this order gives the smoothest difficulty curve. Each boss unlocks the next region and is required to progress the story.</p>
+                    </div>
+                    <div class="boss-timeline">
+                        <!-- Step 1 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">1</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty easy">Easy</span>
+                                    <h3>Margit, the Fell Omen</h3>
+                                    <p class="timeline-location">Gatefront Ruins &middot; Stormhill</p>
+                                </div>
+                                <p class="timeline-desc">The gatekeeper boss that blocks your path to Stormveil Castle. Margit introduces you to combo-heavy staff-and-hammer attacks. <strong>Tip:</strong> Summon Nepheli Louk at the base of the hill. Use Torrent to kite. Recommended Level: 35-50.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Opens: Stormveil Castle</span>
+                                    <span class="req-tag">Key Drop: Great-Jar's Anchor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 2 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">2</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty easy">Easy</span>
+                                    <h3>Godrick the Grafted</h3>
+                                    <p class="timeline-location">Stormveil Castle &middot; Limgrave</p>
+                                </div>
+                                <p class="timeline-desc">First Lord of Cinder and a Shardbearer. Two-phase fight — phase 2 he grafts a dragon's head. <strong>Tip:</strong> Summon Nepheli Louk inside the castle (free help). Attack his legs in phase 1. Dodge dragon breath to the sides. Recommended Level: 50-60.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Remembrance of the Grafted</span>
+                                    <span class="req-tag">Opens: Liurnia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 3 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">3</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty medium">Medium</span>
+                                    <h3>Rennala, Queen of the Full Moon</h3>
+                                    <p class="timeline-location">Raya Lucaria Academy &middot; Liurnia</p>
+                                </div>
+                                <p class="timeline-desc">Head of the Academy and a Remembrance boss. Phase 1 summons magic casts and students. Phase 2 is a simple but high-damage spell combo. <strong>Tip:</strong> Rush to her in phase 2 while she casts — she has no defense against melee. Recommended Level: 60-80.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Great Rune of Rennala</span>
+                                    <span class="req-tag">Unlocks: Relevel system</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 4 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">4</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty hard">Hard</span>
+                                    <h3>Starscourge Radahn</h3>
+                                    <p class="timeline-location">Redmane Castle &middot; Caelid</p>
+                                </div>
+                                <p class="timeline-desc">The strongest demigod general. Gravity magic that covers the entire arena. <strong>Tip:</strong> MUST summon the Redmane Festival NPCs — this fight is trivial with them. Ride Torrent for phase 1, dismount for phase 2 (starfall). Recommended Level: 70-90.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Remembrance of the Starscarred</span>
+                                    <span class="req-tag">Triggers: Radahn Festival</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 5 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">5</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty medium">Medium</span>
+                                    <h3>Morgott, the Graceborn</h3>
+                                    <p class="timeline-location">Leyndell, Royal Capital</p>
+                                </div>
+                                <p class="timeline-desc">The real king of Leyndell and Margit's true form. Uses holy-infused weapons and AoE attacks. Phase 2 transforms into Goldmask's Form with massive holy AoE. <strong>Tip:</strong> Use the pillars in the arena to block charged attacks. Summon Bernahl. Recommended Level: 90-110.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Great Rune of Morgott</span>
+                                    <span class="req-tag">Opens: Altus Plateau</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 6 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">6</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty medium">Medium</span>
+                                    <h3>Fire Giant</h3>
+                                    <p class="timeline-location">Mountaintops of the Giants</p>
+                                </div>
+                                <p class="timeline-desc">The guardian of the Flame of Ruin. Phase 1: chop the ankle relentlessly. Phase 2: he stands up and becomes much more dangerous. <strong>Tip:</strong> Phase 1 only attack the left ankle. Phase 2 dodge fire waves — use spirit ashes to distract. Recommended Level: 100-130.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Great Rune of the Fire Giant</span>
+                                    <span class="req-tag">Unlocks: Crumbling Farum Azula</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 7 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">7</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty very-hard">Very Hard</span>
+                                    <h3>Malenia, Blade of Miquella</h3>
+                                    <p class="timeline-location">Elphael, Brace of the Haligtree</p>
+                                </div>
+                                <p class="timeline-desc">Widely considered the hardest boss in the game. Two phases, waterfowl dance attack, and heals on every hit. <strong>Tip:</strong> Use Mimic Tear spirit ash. Learn the waterfowl dance dodge pattern. Scarlet Rot flask deals massive damage to her. Recommended Level: 120+. Optional but required for one ending.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Remembrance of the Rot Goddess</span>
+                                    <span class="req-tag">Opens: True Ending path</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 8 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">8</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty very-hard">Very Hard</span>
+                                    <h3>Godfrey / First Elden Lord (Golden Shade)</h3>
+                                    <p class="timeline-location">Leyndell, Ashen Capital</p>
+                                </div>
+                                <p class="timeline-desc">Your first shadow fight. Golden Shade copies your exact weapon and buffs. Phase 2 is Godfrey himself with massive AoE stomps. <strong>Tip:</strong> He mirrors your build — bring anti-summon seals or use a different weapon than your main. Recommended Level: 140-160.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Key Item: Remembrance of Hoarah Loux</span>
+                                    <span class="req-tag">Opens: Final Area</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Step 9 -->
+                        <div class="timeline-step">
+                            <div class="timeline-marker">
+                                <span class="timeline-num">9</span>
+                                <div class="timeline-line"></div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="timeline-difficulty very-hard">Very Hard</span>
+                                    <h3>Radagon of the Golden Order / Elden Beast</h3>
+                                    <p class="timeline-location">Elden Throne &middot; Final Boss</p>
+                                </div>
+                                <p class="timeline-desc">The final boss. Phase 1: Radagon is a fast holy-attacking warrior. Phase 2: Elden Beast, the cosmic entity. <strong>Tip:</strong> Radagon is weak to physical and bleed. Elden Beast has ZERO physical resistance — switch to physical weapons. Recommended Level: 150+.</p>
+                                <div class="timeline-requirements">
+                                    <span class="req-tag">Final Boss</span>
+                                    <span class="req-tag">Unlocks: Multiple endings</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== BOSS DETAIL TAB ==================== -->
+        <div class="tab-panel" id="panel-boss-detail">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Boss <span style="color:var(--gold)">Strategies</span></h1>
+                    <p>Phase-by-phase breakdowns, weaknesses, and proven tactics for every major boss.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="boss-tabs-nav">
+                        <button class="boss-tab-btn active" data-bosstab="boss-margit">Margit</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-godrick">Godrick</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-rennala">Rennala</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-radahn">Radahn</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-morgott">Morgott</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-firegiant">Fire Giant</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-malenia">Malenia</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-godfrey">Godfrey</button>
+                        <button class="boss-tab-btn" data-bosstab="boss-final">Final Boss</button>
+                    </div>
+
+                    <!-- Margit Detail -->
+                    <div class="boss-detail-content active" id="boss-margit">
+                        <div class="boss-detail-header">
+                            <h2>Margit, the Fell Omen</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 35-50</span>
+                                <span class="boss-detail-rune">~12,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Staff & Hammer Combo</h3>
+                                <p>Margit starts with a magical staff that he slams and swings. His most dangerous attack is the staff jump combo — he leaps into the air and slams down with a shockwave, then follows with a hammer swing. <strong>Strategy:</strong> Wait for the staff slam, dodge to the side (not backward), then hit 1-2 times before he recovers.</p>
+                                <ul class="boss-tip-list">
+                                    <li>His staff slam has a visible purple glow — roll <strong>sideways</strong>, not backward</li>
+                                    <li>The hammer follow-up is telegraphed by him raising it overhead — roll forward through it</li>
+                                    <li>Throw throwing knives or use ranged attacks during his recovery frames</li>
+                                    <li>Summon Spirit Ashes at the last Site of Grace before the fight</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Cane & Magic</h3>
+                                <p>Margit switches to a golden cane with magic attacks. He throws magic rings, dashes with the cane, and performs a spinning cane attack. <strong>Strategy:</strong> His cane dashes are slow and predictable. Use the gap between dashes to attack. Magic rings can be destroyed with ranged attacks.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Magic rings travel in a wide arc — roll through them, they have short range</li>
+                                    <li>After his cane spin, there's a long recovery — punish with 2-3 hits</li>
+                                    <li>Use Torrent to maintain distance and shoot arrows between his combos</li>
+                                    <li>Weak to Strike damage — use a flail or hammer weapon</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9881; Recommended Setup</h3>
+                                <div class="boss-setup-grid">
+                                    <div class="setup-item"><span class="setup-label">Summon</span><span class="setup-value">Nepheli Louk (round the corner)</span></div>
+                                    <div class="setup-item"><span class="setup-label">Spirit Ash</span><span class="setup-value">Somber Skeleton +1</span></div>
+                                    <div class="setup-item"><span class="setup-label">Weapon Buff</span><span class="setup-value">Goldenvale Abduction or Bloodflame Blade</span></div>
+                                    <div class="setup-item"><span class="setup-label">Best Weapon</span><span class="setup-value">Any Strike weapon (Flail, Morning Star)</span></div>
+                                    <div class="setup-item"><span class="setup-label">Best Spell</span><span class="setup-value">Rock Sling (found near the arena)</span></div>
+                                    <div class="setup-item"><span class="setup-label">Best Talisman</span><span class="setup-value">Murkstaff Robe (+spell damage)</span></div>
+                                </div>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Margit is designed to teach you patience. Don't greed — land 2 hits and roll. Summon Nepheli Louk and let her draw aggro. Use Torrent to kite. This is one of the easiest "gatekeeper" bosses if you don't try to solo it.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Godrick Detail -->
+                    <div class="boss-detail-content" id="boss-godrick">
+                        <div class="boss-detail-header">
+                            <h2>Godrick the Grafted</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★☆☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 50-60</span>
+                                <span class="boss-detail-rune">20,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Grafted Arm</h3>
+                                <p>Godrick fights with a grafted arm that extends his reach. His attacks include wide horizontal slashes, a jumping slam, and a grab attack. <strong>Strategy:</strong> Stay close to his legs — his arm attacks miss easily at close range. After his arm extended attack, he has a long recovery. Punish with 2-3 hits.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Jumping slam: roll forward through it, not backward</li>
+                                    <li>Grab attack can be dodged by rolling sideways</li>
+                                    <li>Arm extended combo has a tell — he raises his arm high</li>
+                                    <li>Summon Nepheli Louk at the Smelter Hall for massive help</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Dragon Arm</h3>
+                                <p>He grafts a dragon's head to his arm. Now he breathes fire and performs dragon-enhanced combos. <strong>Strategy:</strong> The dragon breath has two types — a cone (roll left/right) and a spray (run away then counter). His dragon arm slam creates a shockwave — roll away.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Dragon breath cone: roll perpendicular to the direction</li>
+                                    <li>After dragon breath, Godrick is vulnerable for 3 seconds</li>
+                                    <li>Summon Nepheli Louk — she can cut off his dragon arm (instant win)</li>
+                                    <li>Fireproof mushrooms are scattered around Stormveil — eat them</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9881; Recommended Setup</h3>
+                                <div class="boss-setup-grid">
+                                    <div class="setup-item"><span class="setup-label">Summon</span><span class="setup-value">Nepheli Louk (mandatory — cuts dragon arm)</span></div>
+                                    <div class="setup-item"><span class="setup-label">Spirit Ash</span><span class="setup-value">Black Knife Tiche (fast, anti-demigod)</span></div>
+                                    <div class="setup-item"><span class="setup-label">Best Weapon</span><span class="setup-value">Any weapon — he has low poise</span></div>
+                                    <div class="setup-item"><span class="setup-label">Best Talisman</span><span class="setup-value">Dragoncrest Shield Talisman (+fire resist)</span></div>
+                                </div>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Always summon Nepheli Louk. She's hiding in the Smelter Hall just before the boss room. Talk to her, then she joins the fight and can sever his dragon arm for an instant victory. This is the easiest major boss if you use her.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rennala Detail -->
+                    <div class="boss-detail-content" id="boss-rennala">
+                        <div class="boss-detail-header">
+                            <h2>Rennala, Queen of the Full Moon</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★☆☆☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 60-80</span>
+                                <span class="boss-detail-rune">40,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Magic Summons</h3>
+                                <p>Rennala sits in her chair and summons magical beings: magic stones, spirit ashes, and flitting spirits. <strong>Strategy:</strong> Prioritize killing the summoned spirits first — they deal more damage than Rennala herself. Her magic stone launches are telegraphed with a glow. Roll through them.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Kill summoned spirits first, then attack Rennala</li>
+                                    <li>She has very low HP — rush her between summons</li>
+                                    <li>Spirit ashes are slow and easy to dodge</li>
+                                    <li>Use a bow to pick off summons from range</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Direct Magic</h3>
+                                <p>Rennala stands up and casts magic herself. She performs a sweeping moonbeam, launches comet-like projectiles, and does a room-wide explosion. <strong>Strategy:</strong> Rush her immediately after the phase transition. She has no melee defense and will die to 3-4 hits if you close the distance quickly.</p>
+                                <ul class="boss-tip-list">
+                                    <li>HERO STRATEGY: Sprint to her the moment phase 2 starts — she's helpless</li>
+                                    <li>Moonbeam sweep: roll perpendicular to the beam direction</li>
+                                    <li>Room explosion: stay near her — the explosion radius is far</li>
+                                    <li>Comet projectiles: easy to dodge, long windup</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Phase 2 is the easiest major boss phase in the game. Just sprint to her and attack. She has zero melee capability. If you let her stand and cast, it becomes harder. Aggression is the key.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Radahn Detail -->
+                    <div class="boss-detail-content" id="boss-radahn">
+                        <div class="boss-detail-header">
+                            <h2>Starscourge Radahn</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 70-90</span>
+                                <span class="boss-detail-rune">70,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Gravity Sword</h3>
+                                <p>Radahn charges forward with a giant sword, performs gravity-enhanced combos, and throws his sword into the air creating gravity wells. <strong>Strategy:</strong> Use Torrent to circle him. His charge is fast but predictable. When he throws his sword, the gravity well pulls you in — dismount or roll out.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Summon ALL festival NPCs — Patches, Alexander, Bernahl, Iji</li>
+                                    <li>On Torrent: circle him constantly, attack during his recovery</li>
+                                    <li>Gravity well pulls toward center — roll outward</li>
+                                    <li>His sword combo has a tell — he raises both arms</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Starfall</h3>
+                                <p>Radahn jumps into the air and calls down meteorites. You MUST dismount from Torrent. Gravity pulls you upward. <strong>Strategy:</strong> Stay near the edges of the arena where meteorites are sparse. Use healing flask between waves. His final gravity slam is the most dangerous — roll immediately when you see the purple indicator.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Stay near arena edges — meteorites cluster in the center</li>
+                                    <li>Gravity pull is unavoidable — use a jump charm or roll into it</li>
+                                    <li>After starfall ends, Radahn is vulnerable for 5 seconds</li>
+                                    <li>Bleed and frost builds are extremely effective</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">DO NOT skip the summon festival. The NPC summons make this fight trivial. If you try to solo it, bring Mimic Tear spirit ash and a bleed weapon. Phase 2 on foot is the real challenge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Morgott Detail -->
+                    <div class="boss-detail-content" id="boss-morgott">
+                        <div class="boss-detail-header">
+                            <h2>Morgott, the Graceborn</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 90-110</span>
+                                <span class="boss-detail-rune">120,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Golden Cane</h3>
+                                <p>Morgott uses a golden cane with holy attacks. Similar to Margit but faster and more aggressive. He performs staff combos, holy ring throws, and a leaping holy slam. <strong>Strategy:</strong> Use the pillars in the arena to block his charged attacks. His holy ring travels in an arc — destroy it with a ranged attack or roll through it.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Use arena pillars to block his charged cane attacks</li>
+                                    <li>Holy ring: destroy with arrow or magic, or roll through</li>
+                                    <li>Leaping slam: roll forward, not backward</li>
+                                    <li>Summon Bernahl at the entrance for help</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Dual Swords (Goldmask)</h3>
+                                <p>Morgott summons two holy swords and fights with incredible speed. His attacks create holy AoE explosions and he performs a spinning holy attack. <strong>Strategy:</strong> His holy explosions have a purple ground indicator — roll away from it. The spinning attack covers a large area — wait for it to end, then punish.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Phase 2 is mostly melee — stay close to interrupt him</li>
+                                    <li>Holy AoE on ground: purple indicator, roll away</li>
+                                    <li>Spin attack: has a long windup, dodge to the side</li>
+                                    <li>Weak to Bleed — use a bleed weapon for massive burst</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Phase 2 is his true form and it's significantly harder. Bring fireproof food (pucca fruit) as he uses fire attacks too. Bleed builds melt him in both phases. Summon Bernahl — his heavy attacks draw aggro effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fire Giant Detail -->
+                    <div class="boss-detail-content" id="boss-firegiant">
+                        <div class="boss-detail-header">
+                            <h2>Fire Giant</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★☆☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 100-130</span>
+                                <span class="boss-detail-rune">180,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Ankles</h3>
+                                <p>The Fire Giant is lying on his side. All attacks are directed at his left ankle. <strong>Strategy:</strong> Ignore everything else — attack the ankle relentlessly. His sweeping attacks and fire breath are telegraphed. Roll through the fire breath (it has a gap). Use spirit ashes to distract him while you chip away at the ankle.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Only attack the LEFT ankle — it's his only weak point</li>
+                                    <li>Fire breath: roll forward through the gap, not backward</li>
+                                    <li>Sweeping arm: has a long windup, easy to dodge</li>
+                                    <li>Use Torrent to stay out of reach between ankle attacks</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Standing</h3>
+                                <p>At 50% HP, he stands up and becomes much more aggressive. Both ankles are now targets but the right one is weaker. He gains fire AoE attacks and stomps. <strong>Strategy:</strong> Continue attacking the right ankle. His stomp creates a fire ring — roll away. The fire wave is fast — use a spirit ash to distract.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Attack the RIGHT ankle in phase 2 — it's his weak spot</li>
+                                    <li>Stomp fire ring: roll away from the purple indicator</li>
+                                    <li>Fire wave: very fast, use Mimic Tear to absorb it</li>
+                                    <li>Weak to holy damage in phase 2</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Phase 1 is simple — just chop the ankle. Phase 2 is where people die. Bring Mimic Tear spirit ash and a bleed weapon. The right ankle in phase 2 is his true weak point. Holy damage is most effective here.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Malenia Detail -->
+                    <div class="boss-detail-content" id="boss-malenia">
+                        <div class="boss-detail-header">
+                            <h2>Malenia, Blade of Miquella</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★★</span>
+                                <span class="boss-detail-rec">Rec. Level: 120+</span>
+                                <span class="boss-detail-rune">480,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Waterfowl & Scarlet Rot</h3>
+                                <p>Malenia is fast, aggressive, and heals on every hit (even missed attacks). Her signature move is the Waterfowl Dance — a three-hit aerial combo that can one-shot most players. <strong>Strategy:</strong> Use Mimic Tear to draw her aggro. When she leaps for Waterfowl Dance, ROLL FORWARD THROUGH IT (not sideways). Scarlet Rot flask deals massive damage to her.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Mimic Tear is THE summon — she draws aggro constantly</li>
+                                    <li>Waterfowl Dance: roll FORWARD through all 3 hits</li>
+                                    <li>Scarlet Rot flask: deal % max HP damage over time</li>
+                                    <li>She heals on EVERY hit — even blocked attacks heal her</li>
+                                    <li>Stay behind her during her combos when possible</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Scarlet Aeonia</h3>
+                                <p>She tears off her dress and summons a massive flower. The arena fills with scarlet rot petals. <strong>Strategy:</strong> The initial petal burst is dodgeable by rolling away. The flower bloom that follows is nearly unavoidable — use the Scarlet Rot immunity talisman or roll through. After the bloom, she's vulnerable for 3 seconds.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Petal burst: roll away from the center of the arena</li>
+                                    <li>Scarlet Aeonia bloom: unavoidable, just roll and hope</li>
+                                    <li>After bloom, she's stunned for 3 seconds — attack!</li>
+                                    <li>Bleed builds still work but are harder due to her speed</li>
+                                    <li>Frost builds are slightly easier — slow her down</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Malenia is the hardest boss in the game. There is no easy way. Bring Mimic Tear, use Scarlet Rot flask, learn the Waterfowl Dance roll-forward pattern, and be patient. If you die, you're rolling at the wrong time — not because the boss is unfair.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Godfrey Detail -->
+                    <div class="boss-detail-content" id="boss-godfrey">
+                        <div class="boss-detail-header">
+                            <h2>Godfrey / First Elden Lord</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★☆</span>
+                                <span class="boss-detail-rec">Rec. Level: 140-160</span>
+                                <span class="boss-detail-rune">300,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Golden Shade</h3>
+                                <p>Your own shadow fights back, copying your exact weapon and buffs. <strong>Strategy:</strong> This is a mirror match. If you use a bleed weapon, your shade has one too. Use a different weapon than your main build. Spirit ashes are very effective since your shade ignores them.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Use a different weapon than your main build</li>
+                                    <li>Spirit ashes work well — the shade can't hit them</li>
+                                    <li>Healing flasks work on you but not the shade</li>
+                                    <li>Roll through his attacks — they're identical to yours</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Godfrey Returns</h3>
+                                <p>The real Golden Shade leaves and Godfrey returns. Massive AoE stomps and claw attacks. <strong>Strategy:</strong> Stay mobile. His stomps create shockwaves that travel outward. Roll toward him during his combos — he has long recovery frames.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Shockwave stomps: roll toward him, not away</li>
+                                    <li>Claw swipe: has a wide arc, roll through the gap</li>
+                                    <li>After his big combo, he kneels — 4-5 hits guaranteed</li>
+                                    <li>Summon any spirit ash — Godfrey ignores summons</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">Bring a weapon you DON'T normally use for phase 1. For phase 2, just stay aggressive — Godfrey punishes passive play. Spirit ashes are extremely effective since he ignores them completely.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final Boss Detail -->
+                    <div class="boss-detail-content" id="boss-final">
+                        <div class="boss-detail-header">
+                            <h2>Radagon of the Golden Order / Elden Beast</h2>
+                            <div class="boss-detail-meta">
+                                <span class="boss-detail-diff">Difficulty: ★★★★★</span>
+                                <span class="boss-detail-rec">Rec. Level: 150+</span>
+                                <span class="boss-detail-rune">500,000 Runes</span>
+                            </div>
+                        </div>
+                        <div class="boss-detail-grid">
+                            <div class="boss-detail-section">
+                                <h3>&#9876; Phase 1 — Radagon</h3>
+                                <p>Radagon is a fast holy-attacking warrior with a hammer and scripture. His combos are relentless and his holy attacks pierce through rolls. <strong>Strategy:</strong> Roll through his attacks rather than blocking. His scripture slam creates a holy cross — roll diagonally. He is weak to physical damage and bleed.</p>
+                                <ul class="boss-tip-list">
+                                    <li>Weak to Bleed — bring a bleed weapon if possible</li>
+                                    <li>Holy attacks pierce i-frames — roll AFTER the attack</li>
+                                    <li>Scripture slam: roll diagonally, not straight</li>
+                                    <li>His hammer combo ends with a leap — roll away</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9877; Phase 2 — Elden Beast</h3>
+                                <p>The cosmic embodiment of the Elden Ring. Massive, flying, and shoots holy beams. <strong>Strategy:</strong> Switch to a PHYSICAL weapon — Elden Beast has ZERO physical resistance but massive holy resistance. Stay close to it. Its laser beam is telegraphed — roll perpendicular. Use spirit ashes to distract.</p>
+                                <ul class="boss-tip-list">
+                                    <li>SWITCH TO PHYSICAL WEAPON — zero resistance to it</li>
+                                    <li>Holy laser: roll perpendicular to the beam</li>
+                                    <li>Ring of light: unavoidable, use a healing flask mid-roll</li>
+                                    <li>It flies — stay close to prevent it from escaping</li>
+                                    <li>Spirit ashes distract it effectively</li>
+                                </ul>
+                            </div>
+                            <div class="boss-detail-section">
+                                <h3>&#9889; Key Takeaway</h3>
+                                <p class="boss-key-takeaway">The biggest mistake players make is using magic/holy weapons against Elden Beast. It has massive holy resistance. Use a physical weapon (bleed preferred) and stay close. This is the easiest phase if you use the right weapon type.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== MECHANICS TAB ==================== -->
+        <div class="tab-panel" id="panel-mechanics">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Core <span style="color:var(--gold)">Mechanics</span></h1>
+                    <p>Torment, Poise, Impact, i-frames, Buff Stacking — everything explained.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="mechanics-grid">
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9878;</div>
+                            <h3>Torment (Vigor / HP)</h3>
+                            <p><strong>Torment</strong> (called <em>Vigor</em> in-game) is your Hit Points. It determines how much damage you can take before dying.</p>
+                            <div class="mechanic-details">
+                                <h4>Key Facts:</h4>
+                                <ul>
+                                    <li><strong>Soft Cap:</strong> 100 Vigor (massive HP gain per point)</li>
+                                    <li><strong>Hard Cap:</strong> 150 Vigor (diminishing returns after 100)</li>
+                                    <li>At 40 Vigor: ~580 HP &nbsp;|&nbsp; At 80: ~1,060 HP &nbsp;|&nbsp; At 100: ~1,240 HP</li>
+                                    <li><strong>Recommendation:</strong> Always raise Vigor to 40 minimum, 60 ideal</li>
+                                </ul>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> Most deaths come from having too little Vigor. Raise it to 40 before anything else as a new player. The HP gain from 30 to 40 is massive (~100 extra HP).
+                            </div>
+                        </div>
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9876;</div>
+                            <h3>Poise (Torment Break Threshold)</h3>
+                            <p><strong>Poise</strong> is your internal "stagger resistance." When you take hits, a hidden poise meter fills up. If it fills completely, you get <em>poise broken</em> — you stagger and can't attack for a moment.</p>
+                            <div class="mechanic-details">
+                                <h4>How Poise Works:</h4>
+                                <ul>
+                                    <li>Each armor piece adds a flat poise value</li>
+                                    <li>Two specific talismans boost poise: <strong>Bull-Goose Charm</strong> and <strong>Iron Jar Candlestick</strong></li>
+                                    <li>Heavy attacks and weapon arts deal more poise damage</li>
+                                    <li>Boosting poise lets you attack through enemy hits</li>
+                                </ul>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> Stack Bull-Goose Charm + Iron Jar Candlestick + heavy armor to reach 70+ poise. This lets you trade hits with enemies — you take damage but don't stagger, letting you land extra attacks.
+                            </div>
+                        </div>
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9877;</div>
+                            <h3>Impact (Knockback Force)</h3>
+                            <p><strong>Impact</strong> determines how much <em>knockback</em> or <em>push force</em> an attack deals. It's separate from damage — an attack can do zero damage but still knock you off a cliff.</p>
+                            <div class="mechanic-details">
+                                <h4>Key Facts:</h4>
+                                <ul>
+                                    <li>High impact = more knockback (pushes enemies back)</li>
+                                    <li>Low impact = less knockback (keeps enemies in range)</li>
+                                    <li>Some weapons have <strong>zero impact</strong> (great for keeping bosses in place)</li>
+                                    <li>Impact matters for cliff-killing enemies in Caelid and Mountaintops</li>
+                                </ul>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> Use low-impact weapons when you want to keep a boss in range for spirit ash aggro. High-impact weapons are bad for bleed builds because they knock the boss away before bleed triggers.
+                            </div>
+                        </div>
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9830;</div>
+                            <h3>i-Frames (Invincibility Frames)</h3>
+                            <p><strong>i-Frames</strong> are moments during certain actions where you cannot take damage. The most common source is the <em>roll</em> (dodge).</p>
+                            <div class="mechanic-details">
+                                <h4>i-Frame Sources:</h4>
+                                <ul>
+                                    <li><strong>Roll:</strong> ~0.3-0.5 seconds of invincibility (depends on roll type)</li>
+                                    <li><strong>Jump:</strong> Very brief, not reliable for combat</li>
+                                    <li><strong>Spotlight Roll (Jump Dodge):</strong> Longer i-frames — roll at the peak of your jump</li>
+                                    <li><strong>Certain Ashes of War:</strong> Some weapon arts grant i-frames</li>
+                                    <li><strong>Blessing's Boon:</strong> Grants temporary i-frames during healing</li>
+                                </ul>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> The Spotlight Roll (jump + roll at peak) gives more i-frames than a normal roll. This is essential for dodging Malenia's Waterfowl Dance and Radahn's starfall — you can jump and roll through it for more invincibility.
+                            </div>
+                        </div>
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9855;</div>
+                            <h3>Buff Stacking</h3>
+                            <p>You can have multiple active buffs at once, but <strong>similar buffs don't stack</strong>. Buffs are categorized by type, and only the strongest buff of each category applies.</p>
+                            <div class="mechanic-details">
+                                <h4>Buff Categories (can stack together):</h4>
+                                <ul>
+                                    <li><strong>Weapon Buff (Right Hand):</strong> Golden Vow, Flame, Grant Me Strength</li>
+                                    <li><strong>Weapon Buff (Left Hand/Shield):</strong> Lightning, Magic, Sacred</li>
+                                    <li><strong>Defensive Buffs:</strong> Shield, Barkskin, Golden Vow (defense portion)</li>
+                                    <li><strong>Passive Buffs:</strong> Crystal Release, Ancient Dragon's Blessing</li>
+                                </ul>
+                                <p style="margin-top:12px;"><strong>Example of stacking 4 buffs:</strong></p>
+                                <ol>
+                                    <li>Cast <em>Golden Vow</em> (+attack & defense for 80s)</li>
+                                    <li>Cast <em>Flame, Grant Me Strength</em> (+physical & fire damage for 30s)</li>
+                                    <li>Equip <em>Crucible Axe Shield</em> (+attack aura)</li>
+                                    <li>Use <em>Ancient Dragon's Blessing</em> (+all attributes for 15s)</li>
+                                </ol>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> Before boss fights, stack: Golden Vow → Flame Grant Me Strength → Ancient Dragon's Blessing → eat food. This gives ~35%+ attack boost. For defense: Barkskin (VIT buff) + Crucible Axe Shield + Golden Vow.
+                            </div>
+                        </div>
+
+                        <div class="mechanic-card">
+                            <div class="mechanic-icon">&#9873;</div>
+                            <h3>Equipment Load & Roll Types</h3>
+                            <p>Your <strong>Equip Load</strong> (affected by Endurance + certain talismans) determines your <em>roll type</em>, which directly affects i-frame duration and mobility.</p>
+                            <div class="mechanic-details">
+                                <h4>Roll Types:</h4>
+                                <ul>
+                                    <li><strong>Zero Roll (0%):</strong> You can't roll at all</li>
+                                    <li><strong>Fast Roll (under 70%):</strong> Long i-frames, high mobility — <em>recommended</em></li>
+                                    <li><strong>Half Roll (70-84%):</strong> Medium i-frames — acceptable</li>
+                                    <li><strong>Heavily Encumbered (84-100%):</strong> Slow walk, no rolling</li>
+                                    <li><strong>Overloaded (100%+):</strong> Can't run or roll</li>
+                                </ul>
+                            </div>
+                            <div class="mechanic-tip">
+                                <strong>Pro Tip:</strong> Aim for under 70% Equip Load for fast roll. Use the Bull-Goose Charm (+18% load) to wear heavier armor while staying under 70%. This is the "70% build" philosophy — max damage output with maximum mobility.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== WARCrafts TAB ==================== -->
+        <div class="tab-panel" id="panel-warcrafts">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Ashes of <span style="color:var(--gold)">War</span></h1>
+                    <p>How to change weapon abilities, affinities, and categories.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="warcraft-intro">
+                        <p><strong>Ashes of War</strong> (also called Warcrafts or AoW) are consumable items that let you change a weapon's skill (Ash of War ability) and its damage affinity (scaling). You find them throughout the Lands Between, buy them from merchants, or get them from bosses.</p>
+                        <p style="margin-top:12px;">To change a weapon's Ash of War, visit any <strong>Site of Grace</strong> and select "Change Ash of War." Some weapons cannot be changed (marked with a lock icon).</p>
+                    </div>
+
+                    <h2 class="subsection-title">Affinity System — What Changes When You Apply an AoW</h2>
+                    <div class="affinity-grid">
+                        <div class="affinity-card">
+                            <h3>&#9876; Standard</h3>
+                            <p>Keeps the weapon's original scaling. Best for weapons that already have good stats. No change to damage type.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9877; Heavy (Colossal)</h3>
+                            <p>Boosts <strong>Strength</strong> scaling, reduces DEX scaling. Increases poise damage on hits. Best for STR builds with colossal weapons.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9873; Keen</h3>
+                            <p>Boosts <strong>Dexterity</strong> scaling, reduces STR scaling. Makes weapons faster. Best for DEX builds.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9878; Holy</h3>
+                            <p>Adds <strong>Holy</strong> damage and boosts Faith scaling. Effective against undead and death-related enemies.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9829; Blood (Bleed)</h3>
+                            <p>Adds <strong>Bleed</strong> buildup and boosts Arcane scaling. Best for bleed builds — each hit adds bleed meter.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9874; Frost</h3>
+                            <p>Adds <strong>Frost</strong> buildup and boosts Int/FTH scaling. Slows enemies and deals burst damage when it triggers.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9873; Magic</h3>
+                            <p>Adds <strong>Magic</strong> damage and boosts INT scaling. Great for intelligence builds.</p>
+                        </div>
+                        <div class="affinity-card">
+                            <h3>&#9834; Fire</h3>
+                            <p>Adds <strong>Fire</strong> damage and boosts FTH scaling. Good against ice enemies and for damage-over-time.</p>
+                        </div>
+                    </div>
+
+                    <h2 class="subsection-title">Ashes of War by Category</h2>
+                    <div class="aow-category">
+                        <h3>&#9876; Offensive — Damage Boost</h3>
+                        <div class="aow-list">
+                            <div class="aow-item"><strong>Charged Slash</strong> — Charge up for a powerful strike. Good for Strength builds. <em>Found: Limgrave, near the starting village.</em></div>
+                            <div class="aow-item"><strong>Spinning Slash</strong> — Spin and slash forward. High damage, good mobility. <em>Found: Stormveil Castle.</em></div>
+                            <div class="aow-item"><strong>Waves of Darkness</strong> — Fire projectile waves. Good for DEX builds. <em>Found: Roundtable Hold merchant.</em></div>
+                            <div class="aow-item"><strong>Flame Sweep</strong> — Spin with fire trailing behind. Great for clearing groups. <em>Found: Liurnia, near the lake shore.</em></div>
+                            <div class="aow-item"><strong>Hoarah Loux's Earthshaker</strong> — Massive AoE slam. Best in game for Strength. <em>Found: After defeating Godfrey shade.</em></div>
+                        </div>
+                    </div>
+                    <div class="aow-category">
+                        <h3>&#9877; Utility — Mobility & Control</h3>
+                        <div class="aow-list">
+                            <div class="aow-item"><strong>Impaling Thrust</strong> — Lunge forward with a piercing stab. Great for mounted combat. <em>Found: Stormveil Castle.</em></div>
+                            <div class="aow-item"><strong>Lightning Spear</strong> — Throw a lightning projectile. Good for kiting. <em>Found: Divine Tower of Caelid.</em></div>
+                            <div class="aow-item"><strong>Bestial Sling</strong> — Throw multiple stones. Cheap FP, good for farming. <em>Found: Speak to Gurranq at Bestial Sanctum.</em></div>
+                            <div class="aow-item"><strong>Spotted Paw</strong> — Charge forward like a beast. Great for closing distance. <em>Found: Gurranq reward.</em></div>
+                        </div>
+                    </div>
+                    <div class="aow-category">
+                        <h3>&#9881; Buffs — Self-Enhancement</h3>
+                        <div class="aow-list">
+                            <div class="aow-item"><strong>Golden Vow</strong> — +15% attack and defense for 80 seconds. <strong>Best buff in the game.</strong> <em>Found: Corniann's shop or defeat Messmer.</em></div>
+                            <div class="aow-item"><strong>Flame, Grant Me Strength</strong> — +20% physical & fire damage for 30s. <em>Found: Near the Castle Sol Site of Grace.</em></div>
+                            <div class="aow-item"><strong>Bloodflame Blade</strong> — Enchants weapon with bloodfire for 90s. Great for bleed builds. <em>Found: Rose Church, Liurnia.</em></div>
+                            <div class="aow-item"><strong>Electrify Armament</strong> — Enchants weapon with lightning for 60s. <em>Found: Church of Elleh, Limgrave.</em></div>
+                            <div class="aow-item"><strong>Garph's Cold Moon</strong> — Enchants with frostbite. <em>Found: Sellia, Caelid.</em></div>
+                        </div>
+                    </div>
+                    <div class="aow-category">
+                        <h3>&#9855; Special — Unique Effects</h3>
+                        <div class="aow-list">
+                            <div class="aow-item"><strong>Unsheathe</strong> — Quick draw slash. Best for katanas. <em>Found: Starting Ash of War for Uchigatana.</em></div>
+                            <div class="aow-item"><strong>Scouring Black Flame</strong> — AoE black flame ring. Anti-summon. <em>Found: Church of Inhibition, Caelid.</em></div>
+                            <div class="aow-item"><strong>Monster's Plunge</strong> — Jump and slam weapon down. Massive poise damage. <em>Found: Redmane Castle.</em></div>
+                            <div class="aow-item"><strong>Stormwall</strong> — Create a lightning wall. Great for crowd control. <em>Found: Giant-Conquering Hero's Grave.</em></div>
+                        </div>
+                    </div>
+
+                    <div class="mechanic-tip" style="margin-top:32px;">
+                        <strong>Pro Tip:</strong> You can find the same Ash of War multiple times with different affinities. The <strong>golden</strong> version is always the strongest. Look for golden sparkles on the ground — that's a better version. Always upgrade your weapon to +10 (or +25 for somber) before applying an Ash of War, because weapon level directly affects the AoW damage scaling.
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== BUILDS TAB ==================== -->
+        <div class="tab-panel" id="panel-builds">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Core <span style="color:var(--gold)">Builds</span></h1>
+                    <p>Proven meta builds with stat targets, weapons, and playstyle guides.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="builds-intro">
+                        <p>These are the most effective and popular builds in Elden Ring. Each build has been tested against all major bosses and optimized for both PvE and PvP effectiveness.</p>
+                    </div>
+
+                    <div class="build-detail-list">
+                        <!-- Bleed Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#8B0000,#5a0000);">META</div>
+                            <h3>&#9855; Bleed Build (Most Popular PvE)</h3>
+                            <p class="build-detail-desc">The #1 PvE build in Elden Ring. Bleed triggers <strong>blood loss</strong> when the buildup meter fills, dealing <strong>% of max HP</strong> as damage. This makes it devastating against bosses with huge HP pools.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>DEX</span>50</div>
+                                <div class="target-stat"><span>ARC</span>30</div>
+                                <div class="target-stat"><span>VIT</span>35</div>
+                                <div class="target-stat"><span>END</span>20</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Rivers of Blood &rarr; Eleonora's Poleblade &rarr; Occult Old Lord's Talwar</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Mickael Loop &rarr; Lord of Blood's Exultation &rarr; Millicent's Prosthesis</p>
+                                <h4>Signature Spells:</h4>
+                                <p>Bloodflame Blade (weapon buff) &rarr; Bestial Sling (farming)</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Fast katana or scimitar combat. Land 4-5 hits to trigger bleed, then back off and heal. Repeat. Against bosses, this can deal 30-40% of their max HP in a single bleed proc. Extremely effective against Radahn, Malenia, and Fire Giant.</p>
+                            </div>
+                        </div>
+
+                        <!-- Mage Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#4B0082,#2d004d);">OP</div>
+                            <h3>&#9873; Comet Azur Mage Build (Highest DPS)</h3>
+                            <p class="build-detail-desc">The highest single-shot damage in the game. Comet Azur fires a continuous beam that melts everything. With the right setup, you can one-shot most early-game bosses.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>INT</span>80</div>
+                                <div class="target-stat"><span>VIT</span>25</div>
+                                <div class="target-stat"><span>END</span>15</div>
+                                <div class="target-stat"><span>MEN</span>20</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Comet Azur Staff &rarr; Lusat's Staff (infinite cast) &rarr; Serpent's Staff</p>
+                                <h4>Signature Spells:</h4>
+                                <p>Comet Azur &rarr; Comet &rarr; Orbiting Spectral Swords &rarr; Carian Sickle</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Graven-Mass Talisman &rarr; Magic Scorpion Charm &rarr; Shawl (hide in bushes)</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Stand still and fire Comet Azur while buffed. You're extremely vulnerable — use Crystal Release talisman for damage boost and hide in bushes with the Green Mimic Tear charm. Best against stationary or slow bosses.</p>
+                            </div>
+                        </div>
+
+                        <!-- Strength Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#8B4513,#654321);">PWR</div>
+                            <h3>&#9876; Strength Build (One-Hit Wonders)</h3>
+                            <p class="build-detail-desc">Massive colossal weapons that deal absurd damage per hit. With Heavy affinity and Hoarah Loux's Earthshaker, you can melt bosses in seconds.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>STR</span>60</div>
+                                <div class="target-stat"><span>VIT</span>35</div>
+                                <div class="target-stat"><span>END</span>20</div>
+                                <div class="target-stat"><span>DEX</span>15</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Greatstars &rarr; Giant-Crusher &rarr; Starscourge Greatsword</p>
+                                <h4>Signature Warcrafts:</h4>
+                                <p>Hoarah Loux's Earthshaker &rarr; Spinning Slash &rarr; Charge For</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Great-Jar's Anchor &rarr; Bull-Goose Charm &rarr; Shard of Alexander</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Slow but devastating. Each hit deals 2000+ damage with proper buffs. Use Bull-Goose Charm to wear heavy armor and still fast-roll. Earthshaker AoE clears entire rooms. Best against bosses with low poise.</p>
+                            </div>
+                        </div>
+
+                        <!-- Faith Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#DAA520,#8B6914);">DIV</div>
+                            <h3>&#9878; Faith / Black Flame Build</h3>
+                            <p class="build-detail-desc">Black Flame deals <strong>% max HP</strong> damage over time — similar to bleed but for faith builds. Extremely effective against high-HP bosses.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>FTH</span>60</div>
+                                <div class="target-stat"><span>STR</span>30</div>
+                                <div class="target-stat"><span>VIT</span>35</div>
+                                <div class="target-stat"><span>END</span>20</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Trident of the Great God &rarr; Magma Whip Sword &rarr; Saint's Staff</p>
+                                <h4>Signature Incantations:</h4>
+                                <p>Black Flame Blade &rarr; Bestial Sling &rarr; Flame, Grant Me Strength &rarr; Langar's Rocket</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Two-Headed Tortoise &rarr; Avian's Old Fang &rarr; Graven-Scale Talisman</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Melee faith with Black Flame Blade enchantment. The % max HP damage stacks with your weapon damage. Bestial Sling for ranged cleanup. Flame Grant Me Strength before every boss fight.</p>
+                            </div>
+                        </div>
+
+                        <!-- DEX Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#2F4F4F,#1a3333);">SPD</div>
+                            <h3>&#9877; Dexterity Build (Speed & Precision)</h3>
+                            <p class="build-detail-desc">Fast dual-wielding or single high-DEX weapon with keen affinity. High attack speed means more hits per second and faster bleed/frost buildup.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>DEX</span>55</div>
+                                <div class="target-stat"><span>VIT</span>30</div>
+                                <div class="target-stat"><span>END</span>20</div>
+                                <div class="target-stat"><span>STR</span>15</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Moonveil &rarr; Rivers of Blood &rarr; Black Knife &rarr; Eleonora's Poleblade</p>
+                                <h4>Signature Warcrafts:</h4>
+                                <p>Unsheathe &rarr; Spinning Slash &rarr; Ghostflame Dragonfly</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Rotten Winged Sword Insignia &rarr; Millicent's Prosthesis &rarr; Archer's Torch</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Fast, agile combat. Moonveil's Transient Moonlight is one of the best weapon arts in the game — fire a projectile and close distance. Rivers of Blood's Hoellinger adds fire DOT on each hit. Best for players who like fast-paced combat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tank Build -->
+                        <div class="build-detail-card">
+                            <div class="build-detail-badge" style="background:linear-gradient(135deg,#4a4a4a,#2a2a2a);">DEF</div>
+                            <h3>&#9876; Tank / Shield Build (Most Defensive)</h3>
+                            <p class="build-detail-desc">Maximum defense with a greatshield and heavy armor. You become immovable. Pair with Counterattack or Shield Bash for offense.</p>
+                            <div class="build-target-stats">
+                                <div class="target-stat"><span>VIT</span>45</div>
+                                <div class="target-stat"><span>END</span>40</div>
+                                <div class="target-stat"><span>STR</span>30</div>
+                                <div class="target-stat"><span>DEX</span>15</div>
+                            </div>
+                            <div class="build-equipment">
+                                <h4>Signature Weapons:</h4>
+                                <p>Brass Shield &rarr; Crested Shield &rarr; Claymore (for counterattacks)</p>
+                                <h4>Signature Warcrafts:</h4>
+                                <p>Shield Bash &rarr; Counterattack &rarr; Barricade Shield</p>
+                                <h4>Signature Talismans:</h4>
+                                <p>Dragoncrest Greatshield Talisman &rarr; Great-Jar's Anchor &rarr; Crusader's Canopy</p>
+                            </div>
+                            <div class="build-playstyle">
+                                <h4>Playstyle:</h4>
+                                <p>Stand your ground and block everything. Use Shield Bash to stun enemies, then Counterattack for massive damage. Best for players who prefer a defensive, patient playstyle. Can solo bosses that other builds struggle with.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Boss Detail Comments -->
+                    <div class="comments-section" id="comments-bossDetail">
+                        <h3>&#9816; Player Discussions</h3>
+                        <div class="comments-list" id="bossDetailComments"></div>
+                        <div class="comment-form" id="commentForm-bossDetail">
+                            <p class="comment-login-prompt">
+                                <a href="#" onclick="openLoginModal();return false;">Log in</a> to join the discussion.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Build Detail Comments -->
+                    <div class="comments-section" id="comments-builds">
+                        <h3>&#9816; Build Discussions</h3>
+                        <div class="comments-list" id="buildsComments"></div>
+                        <div class="comment-form" id="commentForm-builds">
+                            <p class="comment-login-prompt">
+                                <a href="#" onclick="openLoginModal();return false;">Log in</a> to share your build.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== EARLY GAME TAB ==================== -->
+        <div class="tab-panel" id="panel-early-game">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Early Game <span style="color:var(--gold)">Guide</span></h1>
+                    <p>What to do first, essential items, leveling spots, and everything you need before Stormveil Castle.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="early-game-intro">
+                        <p>New players often wander Limgrave aimlessly, dying to Margit unprepared. This guide tells you <strong>exactly what to do in order</strong> to maximize your power before facing the first major bosses.</p>
+                    </div>
+
+                    <div class="early-game-steps">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h3>Leave the Starting Cave & Get the Sword</h3>
+                                <p>When you wake up at the Gatefront Ruins, go <strong>back to the starting cave</strong> (the one you came from). Inside, you'll find:<br>
+                                &#9679; <strong>Smithing Stone [1]</strong> — used to upgrade your weapon<br>
+                                &#9679; <strong>Flask of Wondrous Physick</strong> recipe (talk to Jar Bairn at Roundtable Hold later)<br>
+                                &#9679; <strong>Ghost Glovewort [1]</strong> — for upgrading spirit ashes</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h3>Explore Limgrave North — Gain Grounds</h3>
+                                <p>Head north from the Gatefront Site of Grace. Clear these locations in order:<br>
+                                &#9679; <strong>Church of Elleh</strong> — meet Merchant Kalé, buy the <strong>Smithing Stone [(1)] x5</strong><br>
+                                &#9679; <strong>Mistwood Ruins</strong> — get <strong>Flask Wondrous Physick</strong> from Jar Bairn (later at Roundtable Hold)<br>
+                                &#9679; <strong>Third Church of Marika</strong> — sell excess items to the merchant here<br>
+                                &#9679; <strong>Tombsward Cave</strong> — get <strong>Stoneball Ash of War</strong> (free, works on any weapon)</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h3>Get the Grace Seed & Upgrade Your Flask</h3>
+                                <p>At the Third Church of Marika, talk to the merchant and buy the <strong>Golden Seed</strong> for 500 runes. This lets you add an extra charge to your Flask of Crimson Tears (healing) at a Site of Grace. <strong>Essential before Margit.</strong></p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">4</div>
+                            <div class="step-content">
+                                <h3>Level Up — Where & How</h3>
+                                <p>Before fighting Margit, level these stats in order:<br>
+                                &#9679; <strong>Vigor to 30</strong> (survive more hits)<br>
+                                &#9679; <strong>Your main damage stat</strong> to 20 (STR/DEX/INT/FTH depending on class)<br>
+                                &#9679; <strong>Endurance to 15</strong> (more stamina for rolling)</p>
+                                <p><strong>Best early leveling spot:</strong> The hill south of Gatefront Ruins — kill the mounted soldiers on horseback. Each gives ~300 runes. Or go to <strong>Liurnia Lake Shore</strong> — kill the Godrick Soldier repeats for ~500 runes each.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">5</div>
+                            <div class="step-content">
+                                <h3>Visit Roundtable Hold</h3>
+                                <p>After resting at any Grace in Limgrave, you'll be transported to <strong>Roundtable Hold</strong>. Here you can:<br>
+                                &#9679; Talk to <strong>Smithmaster Hewg</strong> — upgrade your weapon using Smithing Stones<br>
+                                &#9679; Talk to <strong>Enia</strong> — exchange Remembrances for boss weapons/spells<br>
+                                &#9679; Talk to <strong>Merchant Kalé</strong> (if you brought him) — buy unique items<br>
+                                &#9679; Get the <strong>Wondrous Physick</strong> mixed at the Table of Lost Grace</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">6</div>
+                            <div class="step-content">
+                                <h3>Essential Items to Collect Before Margit</h3>
+                                <div class="essential-items-grid">
+                                    <div class="essential-item"><strong>Smithing Stone [(1)] x20</strong><br>Upgrade weapon to +5 minimum<br><em>Sell dead horses for more</em></div>
+                                    <div class="essential-item"><strong>Golden Seed</strong><br>Extra flask charge<br><em>Third Church of Marika</em></div>
+                                    <div class="essential-item"><strong>Spirit Ashes</strong><br>Somber Skeleton +1<br><em>Stormhill Shack</em></div>
+                                    <div class="essential-item"><strong>Flask of Wondrous Physick</strong><br>Mixed at Table of Lost Grace<br><em>Roundtable Hold</em></div>
+                                    <div class="essential-item"><strong>Preserving Boluses x5</strong><br>Prevent Scarlet Rot<br><em>Church of the Plague, Caelid (if going early)</em></div>
+                                    <div class="essential-item"><strong>Stonesword Key x10+</strong><br>Reveal hidden paths<br><em>Buy from merchants</em></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">7</div>
+                            <div class="step-content">
+                                <h3>Optional: Get the Somber Smithing Stone [1] from the Dead Death Raptor</h3>
+                                <p>On the hill east of Gatefront Ruins, you'll see a dead raptor. Interact with it to get a <strong>Somber Smithing Stone [1]</strong>. Use it to upgrade your <strong>Smithmaster's somber weapons</strong> (like the Uchigatana if you're a Samurai). This is critical for bleed builds.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-num">8</div>
+                            <div class="step-content">
+                                <h3>Fight Margit — You're Ready Now</h3>
+                                <p>With your weapon upgraded to +5, Vigor at 30+, a Golden Seed flask upgrade, and at least one spirit ash summoned, you're prepared for Margit. Remember: <strong>summon Nepheli Louk</strong> at the base of the hill — she makes this fight trivial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="early-game-cheats">
+                        <h3>&#9889; Early Game Cheat Sheet</h3>
+                        <div class="cheat-grid">
+                            <div class="cheat-item"><strong>Dead Horse Trick</strong><br>Jump on dead horses around Limgrave and ride them. They sell for 100-500 runes each at the Roundtable Hold merchant. Fastest early rune farming.</div>
+                            <div class="cheat-item"><strong>Stormhill Shack Spirit Ash</strong><br>Go to Stormhill Shack (north of Gatefront Ruins), kill the knight, take the Somber Skeleton +1 spirit ashes. Free summon for Margit.</div>
+                            <div class="cheat-item"><strong>Stoneball Ash of War</strong><br>Found in Tombsward Cave (west of Gatefront Ruins). Free Ash of War that adds a rock-throwing skill to any weapon. Great for ranged damage early.</div>
+                            <div class="cheat-item"><strong>Golden Rune [1] Farm</strong><br>After Margit, go to the Liurnia Lake Shore. Kill the Godrick Soldiers near the water — they drop Golden Runes [1-3]. Best early rune farm.</div>
+                            <div class="cheat-item"><strong>Smithing Stone [1] Farm</strong><br>South of the Stranded Graveyard, dig up the glowing yellow spots on the ground. Each dig has a 50% chance for a Smithing Stone [1]. Repeat by reloading the area.</div>
+                            <div class="cheat-item"><strong>First Weapon Upgrade</strong><br>Always upgrade your weapon to +5 before fighting Margit. The damage difference between +0 and +5 is massive (~30% more damage).</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== STATS TAB ==================== -->
+        <div class="tab-panel" id="panel-stats">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Stats <span style="color:var(--gold)">Explained</span></h1>
+                    <p>Every attribute, its soft caps, and how it affects your character.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9876;</div>
+                            <h3>Strength (STR)</h3>
+                            <p>Increases physical damage with one-handed and two-handed heavy weapons. Required to wield colossal weapons.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 55 / 80<br>
+                                <strong>Best For:</strong> Strength builds, colossal weapons<br>
+                                <strong>Recommendation:</strong> Level to 55 for most STR builds
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9877;</div>
+                            <h3>Dexterity (DEX)</h3>
+                            <p>Increases physical damage with fast weapons. Affects casting speed for spells. Required for katanas, curved swords, and bows.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 50 / 80<br>
+                                <strong>Best For:</strong> Dex builds, katanas, bows<br>
+                                <strong>Recommendation:</strong> Level to 50 for most DEX builds
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9873;</div>
+                            <h3>Intelligence (INT)</h3>
+                            <p>Required to cast sorceries (glintstone spells). Increases magic damage.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 50 / 80<br>
+                                <strong>Best For:</strong> Mage builds, sorcery<br>
+                                <strong>Recommendation:</strong> Level to 80 for pure mage builds
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9878;</div>
+                            <h3>Faith (FTH)</h3>
+                            <p>Required to cast incantations (holy/fire/lightning spells). Increases holy damage with faith weapons.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 50 / 80<br>
+                                <strong>Best For:</strong> Faith builds, incantations<br>
+                                <strong>Recommendation:</strong> Level to 60 for most faith builds
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9829;</div>
+                            <h3>Vigor (VIT)</h3>
+                            <p>Increases your maximum HP. The single most important stat for survivability.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 40 / 60<br>
+                                <strong>Best For:</strong> Everyone<br>
+                                <strong>Recommendation:</strong> Level to 40 minimum, 60 for endgame
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9881;</div>
+                            <h3>Endurance (END)</h3>
+                            <p>Increases HP recovery rate, stamina (for rolling/attacking), and equip load (allows heavier armor).</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 10 / 25 / 50<br>
+                                <strong>Best For:</strong> Everyone, especially tank builds<br>
+                                <strong>Recommendation:</strong> Level to 25 for comfortable rolling
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9855;</div>
+                            <h3>Arcane (ARC)</h3>
+                            <p>Increases discovery rate (item drop chances), affects status buildup (bleed, frost, poison), and powers certain spells/weapons.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 20 / 50 / 80<br>
+                                <strong>Best For:</strong> Bleed builds, item farming<br>
+                                <strong>Recommendation:</strong> Level to 30-40 for bleed, 80 for pure arcane
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card-icon">&#9874;</div>
+                            <h3>Memory (MEM)</h3>
+                            <p>Increases the number of spell slots available for sorceries and incantations. Does not increase spell power.</p>
+                            <div class="stat-caps">
+                                <strong>Soft Caps:</strong> 10 / 14 / 16<br>
+                                <strong>Best For:</strong> Spellcasters who want more slots<br>
+                                <strong>Recommendation:</strong> 14 slots is enough for most builds
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-summary" style="margin-top:48px;">
+                        <h3>Stat Allocation Summary</h3>
+                        <p><strong>Minimum viable stats for any build:</strong> Vigor 40, Endurance 15, and your main damage stat at 20.</p>
+                        <p><strong>Ideal stats for endgame:</strong> Vigor 60, Endurance 25, main stat 60-80 (depending on build), all others at minimum requirements.</p>
+                        <p><strong>Total level cap:</strong> 713 (the level you reach when every single stat is at 99). Most builds finish the game between levels 150-250.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== COMMUNITY GUIDES TAB ==================== -->
+        <div class="tab-panel" id="panel-community-guides">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Community <span style="color:var(--gold)">Guides</span></h1>
+                    <p>Strategies and tips shared by fellow Tarnished.</p>
+                    <div style="margin-top:24px;">
+                        <button class="btn btn-primary" onclick="openSubmitGuideModal()" id="submitGuideBtn" style="display:none;">+ Submit Your Guide</button>
+                        <button class="btn btn-outline" onclick="openLoginModal()" id="loginGuideBtn">Login to Submit</button>
+                    </div>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container">
+                    <div class="community-guides-list" id="communityGuidesList">
+                        <!-- Dynamically populated -->
+                        <div class="empty-state">
+                            <p>No community guides yet. Be the first to share your strategy!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== FEEDBACK TAB ==================== -->
+        <div class="tab-panel" id="panel-feedback">
+            <div class="page-hero">
+                <div class="container">
+                    <h1>Send <span style="color:var(--gold)">Feedback</span></h1>
+                    <p>Found a bug? Have a suggestion? We'd love to hear from you.</p>
+                </div>
+            </div>
+            <section class="section">
+                <div class="container" style="max-width:600px;">
+                    <div class="feedback-form-card">
+                        <form onsubmit="submitFeedback(event)">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" id="fbName" placeholder="TarnishedPlayer" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email (optional)</label>
+                                <input type="email" id="fbEmail" placeholder="your@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="fbCategory" required>
+                                    <option value="">Select category...</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="guide-error">Guide Error</option>
+                                    <option value="suggestion">Feature Suggestion</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea id="fbMessage" rows="6" placeholder="Tell us what's on your mind..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%;">Send Feedback</button>
+                        </form>
+                        <div class="feedback-note">
+                            <p>Or email us directly: <a href="mailto:whcwhcwhc666@gmail.com" style="color:var(--gold);">whcwhcwhc666@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ===== AUTH MODALS ===== -->
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
+            <h2>Welcome Back, Tarnished</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <div class="form-error" id="loginError"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Sign In</button>
+            </form>
+            <p class="modal-switch">Don't have an account? <a href="#" onclick="switchModal('loginModal','registerModal');return false;">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            <h2>Join the Tarnished</h2>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Nickname</label>
+                    <input type="text" id="regNickname" placeholder="Your nickname" required minlength="2" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="Min 6 characters" required minlength="6">
+                </div>
+                <div class="form-error" id="regError"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Create Account</button>
+            </form>
+            <p class="modal-switch">Already have an account? <a href="#" onclick="switchModal('registerModal','loginModal');return false;">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Submit Guide Modal -->
+    <div class="modal-overlay" id="submitGuideModal">
+        <div class="modal modal-large">
+            <button class="modal-close" onclick="closeModal('submitGuideModal')">&times;</button>
+            <h2>Share Your Strategy</h2>
+            <form onsubmit="handleSubmitGuide(event)">
+                <div class="form-group">
+                    <label>Guide Title</label>
+                    <input type="text" id="guideTitle" placeholder="e.g. How I Beat Malenia with a Shield" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="guideCategory" required>
+                            <option value="">Select...</option>
+                            <option value="boss">Boss Strategy</option>
+                            <option value="build">Build Guide</option>
+                            <option value="area">Area Guide</option>
+                            <option value="tips">Tips & Tricks</option>
+                            <option value="lore">Lore</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" id="guideTags" placeholder="malenia, bleed, solo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Your Guide</label>
+                    <textarea id="guideContent" rows="10" placeholder="Write your strategy here... Use paragraphs for readability." required></textarea>
+                </div>
+                <div class="form-error" id="guideError"></div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Publish Guide</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal (alternative to tab) -->
+    <div class="modal-overlay" id="feedbackModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('feedbackModal')">&times;</button>
+            <h2>Quick Feedback</h2>
+            <form onsubmit="submitFeedback(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="fbNameModal" placeholder="Your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="fbMessageModal" rows="4" placeholder="Your feedback..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== NEWSLETTER / CTA ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Don't Die Alone</h2>
+            <p>Get weekly boss strategies, build tips, and hidden secret guides delivered to your inbox.</p>
+            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            <p class="newsletter-note">No spam. Unsubscribe anytime. Join 50,000+ Tarnished.</p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo" onclick="switchTab('home');return false;">
+                        <span class="logo-icon">&#9878;</span> EldenTome
+                    </a>
+                    <p>The most comprehensive free Elden Ring guide on the internet. Built by players, for players.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Guides</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchTab('boss-order');return false;">Boss Order</a></li>
+                        <li><a href="#" onclick="switchTab('boss-detail');return false;">Boss Strategies</a></li>
+                        <li><a href="#" onclick="switchTab('builds');return false;">Build Guides</a></li>
+                        <li><a href="#" onclick="switchTab('early-game');return false;">Early Game</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Mechanics</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchTab('mechanics');return false;">Core Mechanics</a></li>
+                        <li><a href="#" onclick="switchTab('warcrafts');return false;">Ashes of War</a></li>
+                        <li><a href="#" onclick="switchTab('stats');return false;">Stats Explained</a></li>
+                        <li><a href="#" onclick="switchTab('classes');return false;">Class Selection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#" onclick="switchTab('community-guides');return false;">Community Guides</a></li>
+                        <li><a href="#" onclick="switchTab('feedback');return false;">Send Feedback</a></li>
+                        <li><a href="#" onclick="openLoginModal();return false;">Sign In</a></li>
+                        <li><a href="admin.html">Admin Panel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EldenTome. Not affiliated with FromSoftware or Bandai Namco. Elden Ring is a trademark of FromSoftware.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

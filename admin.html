@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin — EldenTome</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Admin-specific styles */
+        .admin-body { padding-top: 80px; }
+        .admin-login {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 60%), var(--dark);
+        }
+        .admin-login-box {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        .admin-login-box h2 {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .admin-login-box p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+        .admin-login-box .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .admin-login-box .back-link:hover { color: var(--gold); }
+
+        /* Admin dashboard */
+        .admin-dashboard { display: none; }
+        .admin-dashboard.active { display: block; }
+        .admin-header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 32px;
+        }
+        .admin-header h1 {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        .admin-header .admin-back {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        .admin-header .admin-back a { color: var(--gold); }
+
+        /* Stats cards */
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .admin-stat-card {
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            text-align: center;
+        }
+        .admin-stat-card .stat-val {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .admin-stat-card .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* Admin tabs */
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .admin-tab-btn {
+            padding: 10px 20px;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .admin-tab-btn:hover, .admin-tab-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(201,168,76,0.08);
+        }
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
+
+        /* Tables */
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark-surface);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .admin-table th {
+            background: var(--dark-card);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+        .admin-table td {
+            padding: 12px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--dark-border);
+            vertical-align: middle;
+        }
+        .admin-table tr:last-child td { border-bottom: none; }
+        .admin-table tr:hover td { background: rgba(201,168,76,0.03); }
+        .admin-table .actions { white-space: nowrap; }
+        .admin-table .actions button {
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--dark-border);
+            background: var(--dark-card);
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-right: 4px;
+            transition: all var(--transition);
+        }
+        .admin-table .actions button:hover { border-color: var(--gold); color: var(--gold); }
+        .admin-table .actions button.danger:hover { border-color: #e57373; color: #e57373; }
+        .admin-table .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-banned { background: rgba(229,115,115,0.2); color: #e57373; }
+        .badge-active { background: rgba(76,175,80,0.2); color: #4caf50; }
+        .badge-resolved { background: rgba(76,175,80,0.2); color: #4caf50; }
+        .badge-pending { background: rgba(255,152,0,0.2); color: #ff9800; }
+
+        /* Admin form */
+        .admin-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Empty state */
+        .admin-empty {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .admin-stats { grid-template-columns: repeat(2, 1fr); }
+            .admin-table { font-size: 0.75rem; }
+            .admin-table th, .admin-table td { padding: 8px 10px; }
+            .admin-form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .admin-stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- Admin Login -->
+    <div class="admin-login" id="adminLogin">
+        <div class="admin-login-box">
+            <h2>&#9878; Admin Panel</h2>
+            <p>EldenTome Management Console</p>
+            <div class="form-group">
+                <label>Admin Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter admin password" onkeypress="if(event.key==='Enter')adminSignIn()">
+            </div>
+            <div class="form-error" id="adminError"></div>
+            <button class="btn btn-primary" style="width:100%;" onclick="adminSignIn()">Access Panel</button>
+            <a href="index.html" class="back-link">&larr; Back to EldenTome</a>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <nav class="navbar" style="background:var(--dark-card);border-bottom:1px solid var(--dark-border);">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">&#9878; EldenTome Admin</a>
+                <div style="display:flex;gap:12px;align-items:center;">
+                    <a href="index.html" class="btn btn-sm btn-outline">View Site</a>
+                    <button class="btn btn-sm" onclick="adminSignOut()" style="background:var(--dark-surface);color:var(--text-muted);border:1px solid var(--dark-border);">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" style="padding-top:24px;">
+            <div class="admin-header">
+                <h1>Dashboard</h1>
+                <p class="admin-back"><a href="index.html">&larr; EldenTome</a> &middot; Management Console</p>
+            </div>
+
+            <!-- Stats -->
+            <div class="admin-stats">
+                <div class="admin-stat-card">
+                    <div class="stat-val" id="statUsers">0</div>
+                    <div class="stat-label">Registered Users</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-val" id="statGuides">0</div>
+                    <div class="stat-label">Community Guides</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-val" id="statComments">0</div>
+                    <div class="stat-label">Comments</div>
+                </div>
+                <div class="admin-stat-card">
+                    <div class="stat-val" id="statFeedback">0</div>
+                    <div class="stat-label">Feedback</div>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" onclick="switchAdminTab('users')">Users</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('guides')">Guides</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('comments')">Comments</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('feedback')">Feedback</button>
+            </div>
+
+            <!-- Users Tab -->
+            <div class="admin-tab-content active" id="adminTab-users">
+                <table class="admin-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>Nickname</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th class="actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersBody"></tbody>
+                </table>
+                <div class="admin-empty" id="usersEmpty">No registered users yet.</div>
+            </div>
+
+            <!-- Guides Tab -->
+            <div class="admin-tab-content" id="adminTab-guides">
+                <table class="admin-table" id="guidesTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th class="actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guidesBody"></tbody>
+                </table>
+                <div class="admin-empty" id="guidesEmpty">No community guides yet.</div>
+            </div>
+
+            <!-- Comments Tab -->
+            <div class="admin-tab-content" id="adminTab-comments">
+                <table class="admin-table" id="commentsTable">
+                    <thead>
+                        <tr>
+                            <th>Author</th>
+                            <th>Content</th>
+                            <th>Date</th>
+                            <th class="actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commentsBody"></tbody>
+                </table>
+                <div class="admin-empty" id="commentsEmpty">No comments yet.</div>
+            </div>
+
+            <!-- Feedback Tab -->
+            <div class="admin-tab-content" id="adminTab-feedback">
+                <table class="admin-table" id="feedbackTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th class="actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackBody"></tbody>
+                </table>
+                <div class="admin-empty" id="feedbackEmpty">No feedback yet.</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script>
+        // ========== ADMIN AUTH ==========
+        const ADMIN_PASSWORD = 'admin123';
+
+        function adminSignIn() {
+            const pw = document.getElementById('adminPassword').value;
+            if (pw === ADMIN_PASSWORD) {
+                sessionStorage.setItem('et_admin', 'true');
+                showDashboard();
+            } else {
+                document.getElementById('adminError').textContent = 'Incorrect password.';
+            }
+        }
+
+        function adminSignOut() {
+            sessionStorage.removeItem('et_admin');
+            location.reload();
+        }
+
+        function showDashboard() {
+            document.getElementById('adminLogin').style.display = 'none';
+            document.getElementById('adminDashboard').classList.add('active');
+            loadAdminData();
+        }
+
+        // Check session on load
+        if (sessionStorage.getItem('et_admin') === 'true') {
+            showDashboard();
+        }
+
+        // ========== ADMIN TABS ==========
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.admin-tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('adminTab-' + tab).classList.add('active');
+        }
+
+        // ========== LOAD DATA ==========
+        function loadAdminData() {
+            loadUsers();
+            loadAdminGuides();
+            loadAdminComments();
+            loadAdminFeedback();
+        }
+
+        function loadUsers() {
+            const users = LocalDB.getUsers();
+            document.getElementById('statUsers').textContent = users.length;
+            const body = document.getElementById('usersBody');
+            const empty = document.getElementById('usersEmpty');
+            if (!users.length) { empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            body.innerHTML = users.map(u => `
+                <tr>
+                    <td>${esc(u.nickname)}</td>
+                    <td>${esc(u.email)}</td>
+                    <td>${u.banned ? '<span class="badge badge-banned">Banned</span>' : '<span class="badge badge-active">Active</span>'}</td>
+                    <td>${u.createdAt ? timeAgo(new Date(u.createdAt)) : 'unknown'}</td>
+                    <td class="actions">
+                        <button onclick="toggleBan('${u.id}')">${u.banned ? 'Unban' : 'Ban'}</button>
+                        <button class="danger" onclick="deleteUser('${u.id}')">Delete</button>
+                    </td>
+                </tr>`).join('');
+        }
+
+        function loadAdminGuides() {
+            const guides = LocalDB.getGuides();
+            document.getElementById('statGuides').textContent = guides.length;
+            const body = document.getElementById('guidesBody');
+            const empty = document.getElementById('guidesEmpty');
+            if (!guides.length) { empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            body.innerHTML = guides.map(g => `
+                <tr>
+                    <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(g.title)}">${esc(g.title)}</td>
+                    <td>${esc(g.author)}</td>
+                    <td><span class="badge" style="background:rgba(201,168,76,0.15);color:var(--gold);">${esc(g.category||'tips')}</span></td>
+                    <td>${g.createdAt ? timeAgo(new Date(g.createdAt)) : '-'}</td>
+                    <td class="actions">
+                        <button class="danger" onclick="deleteGuide('${g.id}')">Delete</button>
+                    </td>
+                </tr>`).join('');
+        }
+
+        function loadAdminComments() {
+            const comments = LocalDB.getComments();
+            document.getElementById('statComments').textContent = comments.length;
+            const body = document.getElementById('commentsBody');
+            const empty = document.getElementById('commentsEmpty');
+            if (!comments.length) { empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            body.innerHTML = comments.slice(0, 100).map(c => `
+                <tr>
+                    <td>${esc(c.author)}</td>
+                    <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(c.text)}">${esc(c.text.substring(0, 80))}${c.text.length > 80 ? '...' : ''}</td>
+                    <td>${c.createdAt ? timeAgo(new Date(c.createdAt)) : '-'}</td>
+                    <td class="actions">
+                        <button class="danger" onclick="deleteAdminComment('${c.id}')">Delete</button>
+                    </td>
+                </tr>`).join('');
+        }
+
+        function loadAdminFeedback() {
+            const feedbacks = LocalDB.getFeedback();
+            document.getElementById('statFeedback').textContent = feedbacks.length;
+            const body = document.getElementById('feedbackBody');
+            const empty = document.getElementById('feedbackEmpty');
+            if (!feedbacks.length) { empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            body.innerHTML = feedbacks.map(f => `
+                <tr>
+                    <td>${esc(f.name)}</td>
+                    <td><span class="badge" style="background:rgba(100,181,246,0.15);color:#64b5f6;">${esc(f.category)}</span></td>
+                    <td style="max-width:300px;">${esc(f.message.substring(0, 100))}${f.message.length > 100 ? '...' : ''}</td>
+                    <td>${f.resolved ? '<span class="badge badge-resolved">Resolved</span>' : '<span class="badge badge-pending">Pending</span>'}</td>
+                    <td class="actions">
+                        <button onclick="resolveFeedback('${f.id}')">${f.resolved ? 'Reopen' : 'Resolve'}</button>
+                        <button class="danger" onclick="deleteFeedback('${f.id}')">Delete</button>
+                    </td>
+                </tr>`).join('');
+        }
+
+        // ========== ACTIONS ==========
+        function toggleBan(userId) {
+            const users = LocalDB.getUsers();
+            const u = users.find(x => x.id === userId);
+            if (u) { u.banned = !u.banned; LocalDB.set('users', users); }
+            loadUsers();
+        }
+        function deleteUser(userId) {
+            if (!confirm('Delete this user?')) return;
+            LocalDB.deleteUser(userId);
+            loadUsers();
+        }
+        function deleteGuide(id) {
+            if (!confirm('Delete this guide?')) return;
+            LocalDB.deleteGuide(id);
+            loadAdminGuides();
+        }
+        function deleteAdminComment(id) {
+            if (!confirm('Delete this comment?')) return;
+            LocalDB.deleteComment(id);
+            loadAdminComments();
+        }
+        function resolveFeedback(id) {
+            LocalDB.markResolved(id);
+            loadAdminFeedback();
+        }
+        function deleteFeedback(id) {
+            if (!confirm('Delete this feedback?')) return;
+            LocalDB.deleteFeedback(id);
+            loadAdminFeedback();
+        }
+
+        // ========== UTILS ==========
+        function esc(str) {
+            if (!str) return '';
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+        function timeAgo(date) {
+            const s = Math.floor((Date.now() - date) / 1000);
+            if (s < 60) return 'just now';
+            const m = Math.floor(s / 60); if (m < 60) return m + 'm ago';
+            const h = Math.floor(m / 60); if (h < 24) return h + 'h ago';
+            const d = Math.floor(h / 24); if (d < 30) return d + 'd ago';
+            return Math.floor(d / 30) + 'mo ago';
+        }
+    </script>
+</body>
+</html>
